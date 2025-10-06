@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
-    public class AccountController(AppDbContext context) : BaseApiController
+    public class AccountController(AppDbContext dbContext) : BaseApiController
     {
         [HttpPost("register")]
         public async Task<ActionResult<AppUser>> Register([FromBody] RegisterRequest dto)
@@ -26,15 +26,34 @@ namespace Api.Controllers
                 PasswordSalt = hmac.Key
             };
 
-            context.Users.Add(user);
-            await context.SaveChangesAsync();
+            dbContext.Users.Add(user);
+            await dbContext.SaveChangesAsync();
 
+            return user;
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<AppUser>> Login([FromBody] LoginRequest dto)
+        {
+            var user = await dbContext.Users.SingleOrDefaultAsync(u => u.Email.ToLower().Equals(dto.Email.ToLower()));
+
+            if (user == null) return Unauthorized("Invalid email or password");
+
+            using var hmac = new System.Security.Cryptography.HMACSHA512(user.PasswordSalt);
+
+            var computerHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(dto.Password));
+
+            for (int i = 0; i < computerHash.Length; i++)
+            {
+                if (computerHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid email or password");
+            }
+            
             return user;
         }
 
         private async Task<bool> EmailExists(string email)
         {
-            return await context.Users.AnyAsync(u => u.Email.ToLower().Equals(email.ToLower()));
+            return await dbContext.Users.AnyAsync(u => u.Email.ToLower().Equals(email.ToLower()));
         }
     }
 }
