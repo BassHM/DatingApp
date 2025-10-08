@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Api.Data;
 using Api.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers;
-
+[AllowAnonymous]
 public class MembersController(AppDbContext context) : BaseApiController
 {
     [HttpGet]
