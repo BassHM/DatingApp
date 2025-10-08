@@ -2,6 +2,7 @@ using Api.Data;
 using Api.DTOs;
 using Api.Entities;
 using Api.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace Api.Controllers
 {
     public class AccountController(AppDbContext dbContext, ITokenService tokenService) : BaseApiController
     {
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<UserResponse>> Register([FromBody] RegisterRequest dto)
         {
