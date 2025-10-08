@@ -1,6 +1,7 @@
 using Api.Data;
 using Api.DTOs;
 using Api.Entities;
+using Api.Extensions;
 using Api.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,13 +33,7 @@ namespace Api.Controllers
             dbContext.Users.Add(user);
             await dbContext.SaveChangesAsync();
 
-            return new UserResponse
-            {
-                Id = user.Id,
-                DisplayName = user.DisplayName,
-                Email = user.Email,
-                Token = tokenService.CreateToken(user)
-            };
+            return user.ToDTO(tokenService);
         }
 
         [HttpPost("login")]
@@ -57,13 +52,7 @@ namespace Api.Controllers
                 if (computerHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid email or password");
             }
 
-            return new UserResponse
-            {
-                Id = user.Id,
-                DisplayName = user.DisplayName,
-                Email = user.Email,
-                Token = tokenService.CreateToken(user)
-            };
+            return user.ToDTO(tokenService);
         }
 
         private async Task<bool> EmailExists(string email)
