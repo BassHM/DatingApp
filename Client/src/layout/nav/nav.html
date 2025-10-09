@@ -13,10 +13,10 @@
       <a>Messages</a>
     </nav>
     <div class="flex align-middle ml-auto gap-3">
-      <form class="flex items-center gap-3">
-        <input type="text" class="input" placeholder="Email">
-        <input type="password" class="input" placeholder="Password">
-        <button class="btn">Login</button>
+      <form #loginForm="ngForm" (ngSubmit)="login()" class="flex items-center gap-3">
+        <input [(ngModel)]="credentials.email" type="email" name="Email" class="input" placeholder="Email" required>
+        <input [(ngModel)]="credentials.password" name="password" type="password" class="input" placeholder="Password" required>
+        <button class="btn" [disabled]="loginForm.invalid">Login</button>
       </form>
     </div>
   </div>
