@@ -14,8 +14,8 @@
     </nav>
     <div class="flex align-middle ml-auto gap-3">
       <form #loginForm="ngForm" (ngSubmit)="login()" class="flex items-center gap-3">
-        <input [(ngModel)]="credentials.email" type="email" name="Email" class="input" placeholder="Email" required>
-        <input [(ngModel)]="credentials.password" name="password" type="password" class="input" placeholder="Password" required>
+        <input [(ngModel)]="credentials.Email" type="email" name="Email" class="input" placeholder="Email" required>
+        <input [(ngModel)]="credentials.Password" name="password" type="password" class="input" placeholder="Password" required>
         <button class="btn" [disabled]="loginForm.invalid">Login</button>
       </form>
     </div>

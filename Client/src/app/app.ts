@@ -21,7 +21,7 @@ export class App  implements OnInit {
 
   async getMembers(): Promise<Object> {
     try {
-      return lastValueFrom(this.http.get('https://localhost:7276/api/members'))
+      return lastValueFrom(this.http.get('http://localhost:5057/api/members'))
     } catch (error) {
       console.log(error);
       throw error;

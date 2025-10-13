@@ -35,7 +35,7 @@ namespace Api.Controllers
 
             return user.ToDTO(tokenService);
         }
-
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<UserResponse>> Login([FromBody] LoginRequest dto)
         {
