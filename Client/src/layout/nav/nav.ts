@@ -18,6 +18,7 @@ export class Nav {
       next: response => {
         console.log(response);
         this.loggedIn.set(true);
+        this.credentials = {};
       },
       error: error => {
         alert(error.message);
@@ -26,6 +27,6 @@ export class Nav {
   }
 
   logout(): void { 
-    this.loggedIn.set(false);
+    this.accountService.logout();
   }
 }
