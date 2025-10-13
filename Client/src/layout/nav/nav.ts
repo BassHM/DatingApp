@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AccountServices } from '../../app/core/services/account-services';
+import { AccountService } from '../../app/core/services/account-service';
 @Component({
   selector: 'app-nav',
   imports: [FormsModule],
@@ -9,7 +9,7 @@ import { AccountServices } from '../../app/core/services/account-services';
 })
 export class Nav {
   protected credentials: any = {};
-  protected accountService = inject(AccountServices)
+  protected accountService = inject(AccountService)
   protected loggedIn = signal(false);
 
   login(): void {
