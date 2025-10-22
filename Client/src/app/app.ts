@@ -7,6 +7,7 @@ import { User } from '../types/user';
 import { Home } from '../features/home/home';
 import { Router, RouterOutlet } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { ToastService } from '../core/services/toast-service';
 @Component({
   selector: 'app-root',
   imports: [Nav, RouterOutlet, NgClass],
