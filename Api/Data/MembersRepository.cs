@@ -1,9 +1,10 @@
 using System;
-using API.Entities;
-using API.Interfaces;
+using Api.Data;
+using Api.Entities;
+using Api.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data;
+namespace Api.Data;
 
 public class MembersRepository(AppDbContext context) : IMembersRepository
 {
