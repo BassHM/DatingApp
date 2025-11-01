@@ -23,8 +23,8 @@ public class MembersController(IMembersRepository membersRepository) : BaseApiCo
     {
         var member = await membersRepository.GetMemberAsync(id);
         if (member == null) return NotFound();
-        return member;
-    }
+        return member.ToResponse();
+ }
 
     [HttpGet("{id}/photos")]
     public async Task<ActionResult<IReadOnlyList<Photo>>> GetPhotos(string id)
