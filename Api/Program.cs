@@ -1,8 +1,8 @@
 using System.Text;
-using API.Data;
-using API.Interfaces;
-using API.Middlewares;
-using API.Services;
+using Api.Data;
+using Api.Interfaces;
+using Api.Middlewares;
+using Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
