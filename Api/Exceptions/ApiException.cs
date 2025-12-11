@@ -1,4 +1,4 @@
-namespace Api.Exceptions;
+namespace API.Exceptions;
 
 public class ApiException(int statusCode, string message, string? details)
 {

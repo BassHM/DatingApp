@@ -1,15 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json.Serialization;
-using Api.Data;
-using Api.Interfaces;
-using Api.Middlewares;
-using Api.Services;
+using API.Data;
+using API.Interfaces;
+using API.Middlewares;
+using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Api;
+namespace API;
 
 [ExcludeFromCodeCoverage]
 public static class Program

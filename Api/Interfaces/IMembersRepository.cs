@@ -1,7 +1,7 @@
-using System;
-using Api.Entities;
+using API.Entities;
 
-namespace Api.Interfaces;
+namespace API.Interfaces;
+
 public interface IMembersRepository
 {
     void Update(Member member);

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace API.Controllers;
 
 public class ErrorController : BaseApiController
 {
@@ -8,6 +8,9 @@ public class ErrorController : BaseApiController
     [HttpGet("bad-request")]
     public IActionResult GetBadRequest() // 400
     {
+        // var inputParam = -1;
+        // if (inputParam <= 0) throw new ArgumentOutOfRangeException(nameof(inputParam));
+        
         return BadRequest("Bad request");
     }
 

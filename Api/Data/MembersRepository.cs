@@ -1,10 +1,8 @@
-using System;
-using Api.Data;
-using Api.Entities;
-using Api.Interfaces;
+using API.Entities;
+using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Data;
+namespace API.Data;
 
 public class MembersRepository(AppDbContext context) : IMembersRepository
 {
@@ -17,7 +15,8 @@ public class MembersRepository(AppDbContext context) : IMembersRepository
     {
         return await context.Members
             // .Include(m => m.Photos)
-            .ToListAsync();    }
+            .ToListAsync();
+    }
 
     public async Task<IReadOnlyList<Photo>> GetPhotosAsync(string memberId)
     {

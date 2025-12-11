@@ -1,8 +1,8 @@
 using System.Net;
 using System.Text.Json;
-using Api.Exceptions;
+using API.Exceptions;
 
-namespace Api.Middlewares;
+namespace API.Middlewares;
 
 public class ExceptionMiddleware(
     RequestDelegate next,

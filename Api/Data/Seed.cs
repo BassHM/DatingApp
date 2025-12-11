@@ -1,11 +1,11 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using Api.DTOs;
-using Api.Entities;
+using API.DTOs;
+using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Data;
+namespace API.Data;
 
 public class Seed
 {

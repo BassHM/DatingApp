@@ -1,8 +1,8 @@
-using Api.DTOs;
-using Api.Entities;
-using Api.Interfaces;
+using API.DTOs;
+using API.Entities;
+using API.Interfaces;
 
-namespace Api.Extensions
+namespace API.Extensions
 {
     public static class AppUserExtensions
     {

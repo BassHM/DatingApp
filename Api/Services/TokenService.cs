@@ -1,39 +1,37 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Api.Entities;
-using Api.Interfaces;
+using System.Text;
+using API.Entities;
+using API.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Api.Services;
+namespace API.Services;
 
 public class TokenService(IConfiguration configuration) : ITokenService
 {
     public string CreateToken(AppUser user)
     {
-
-        var tokenKey = configuration["TokenKey"] ?? throw new Exception("TokenKey is null");
-
+        var tokenKey = configuration["TokenKey"] ?? throw new ArgumentNullException("Cannot get the token key");
         if (tokenKey.Length < 64)
-            throw new Exception("TokenKey must be at least 64 characters long");
-
-        var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(tokenKey));
-
+        {
+            throw new ArgumentException("The token key must be >= 64 chars");
+        }
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
         var claims = new List<Claim>
         {
             new(ClaimTypes.Email, user.Email),
             new(ClaimTypes.NameIdentifier, user.Id)
         };
-
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-        var tokenDescriptor = new SecurityTokenDescriptor
+        var tokenDescription = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.Now.AddDays(7),
+            Expires = DateTime.UtcNow.AddDays(7),
             SigningCredentials = creds
         };
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var token = tokenHandler.CreateToken(tokenDescription);
 
-        var tokenHaller = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
-        var token = tokenHaller.CreateToken(tokenDescriptor);
-
-        return tokenHaller.WriteToken(token);
+        return tokenHandler.WriteToken(token);
     }
 }
