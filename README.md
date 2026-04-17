@@ -2,7 +2,6 @@
 DatingApp for 2025
 
 # Instructions
-
 ## .NET
 For running the C# API project you need to navigate to `./API` and execute the commands:
 
