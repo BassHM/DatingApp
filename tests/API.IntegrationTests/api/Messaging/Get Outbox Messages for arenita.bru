@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/api/messages?container=Outbox
+  url: {{baseUrl}}/api/messages?container=outbox
   body: none
   auth: inherit
 }
 
 params:query {
-  container: Outbox
+  container: outbox
 }
 
 headers {
@@ -20,4 +20,5 @@ headers {
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

@@ -11,16 +11,17 @@ post {
 }
 
 headers {
-  Authorization: Bearer {{bob_token}}
+  Authorization: Bearer {{otherToken}}
 }
 
 body:json {
   {
       "recipientId": "arenita-id",
-      "content": "Test message from bob to arenita"
+      "content": "Test message 2 from calamardo to arenita"
   }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
